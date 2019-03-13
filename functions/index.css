@@ -186,3 +186,13 @@ button:active {
   content: "GIRD";
   font-size: 15px;
 }
+
+#note {
+  font-size: 10px;
+  color: rgba(178, 179, 179, 0.5);
+  position: absolute;
+  bottom: 5px;
+  right : 5px;
+  width: 100%;
+  text-align: right;
+}

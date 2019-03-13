@@ -37,6 +37,8 @@
 				</button>
 		</div>
 
+		<div id = "note">PC 화면에 최적화 되었습니다.</div>
+
 		<div id="menu">
 			<button id="whale">
 				<span class="w1">고래</span>
@@ -58,6 +60,10 @@
 
 		<script>	
 
+		var isClick = false;
+		var isTrans = false;
+		var isPhone = false;
+
 		//발음기호 버튼 누르면 발음기호를 박스에 보여줌 - 켜고 끔
 		$(function () {
 			$('#pronounce').click(function () {
@@ -65,10 +71,13 @@
 					$('.element .alpha').css('top', '15px');
 					$('.element .hangeul').css('display', 'none');
 					$('.element .phonetic').css('display', 'inline');
+					isPhone = true;
+					console.log(isPhone)
 				}
 				else{
 					$('.element .alpha').css('top', '40px'),
 					$('.element .phonetic').css('display', 'none');
+					isPhone = false;
 				}
 			})
 		})
@@ -80,10 +89,27 @@
 					$('.element .alpha').css('top', '15px');
 					$('.element .phonetic').css('display', 'none');
 					$('.element .hangeul').css('display', 'inline');
+					isTrans = true;
 				}
 				else{
 					$('.element .alpha').css('top', '40px'),
 					$('.element .hangeul').css('display', 'none');
+					isTrans = fasle;
+				}
+			})
+		})
+
+		//박스를 클릭하면 뜻을 켜고 끔
+		$(function () {
+			$('.element').click(function () {
+				if(isclick == false) {
+					console.log(isclick, "false")
+					$('.element', this).css('border', '1px solid rgba(28, 3, 253, 0.75)');
+					$('.alpha', this).css('top', '15px');
+					$('.hangeul', this).css('display', 'inline');
+				} 
+				else {
+					console.log(isclick, "true")
 				}
 			})
 		})
@@ -91,13 +117,19 @@
 		//박스위에 마우스를 올리면 뜻을 보여줌
 		$(function () {
 			$('.element').hover(function () {
-				$('.element', this).css('border', '1px solid rgba(28, 3, 253, 0.75)');
-				$('.alpha', this).css('top', '15px');
-				$('.hangeul', this).css('display', 'inline');
+				if (isPhone == false && isTrans == false) {
+					$('.element', this).css('border', '1px solid rgba(28, 3, 253, 0.75)');
+					$('.alpha', this).css('top', '15px');
+					$('.hangeul', this).css('display', 'inline');
+				}
+			console.log(isTrans)
 			}, function() {
-				$(this).css('border', '1px solid rgba(28, 3, 253, 0.75)');
-				$('.alpha', this).css('top', '40px');
-				$('.hangeul', this).css('display', 'none');
+				if (isPhone == false && isTrans == false) {
+					$(this).css('border', '1px solid rgba(28, 3, 253, 0.75)');
+					$('.alpha', this).css('top', '40px');
+					$('.hangeul', this).css('display', 'none');
+				}
+			console.log(isTrans)
 			})
 		})
 		
